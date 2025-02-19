@@ -406,4 +406,26 @@ width: 100%;
 margin-top: 20px;
 }
 }
+
+
+button {
+    -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+    outline: none; /* Remove o contorno de foco */
+  }
+
+.button {
+    -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+    outline: none; /* Remove o contorno de foco */
+  }
+
+  .enviar {
+    -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+    outline: none; /* Remove o contorno de foco */
+  }
+
+  #submit-form {
+   
+        -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+        outline: none; /* Remove o contorno de foco */
+  }
     
