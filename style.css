@@ -1,0 +1,409 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+#label {
+  display: inline;
+  width: 100px;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+}
+
+
+form {
+  display: block;
+  position: relative;
+  top: 20px;
+}
+
+form .input-group {
+  color: #d35400;
+}
+
+form .input-group label {
+  color: #d35400;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+form .input-group input[type="text"] {
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  outline: none;
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: black;
+  transition: all 0.4s ease;
+  /* background: rgba(238, 238, 209, 0.482);*/
+}
+
+form .input-group input:hover,
+input:focus {
+  border-color: rgb(182, 97, 32);
+}
+
+
+.button {
+  width: 85px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 15px;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.button:active {
+  color: #000;
+}
+
+.button:active:after {
+  background: transparent;
+}
+
+.button:hover:before {
+  opacity: 1;
+}
+
+.button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+#name[type="text"] {
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  outline: none;
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: black;
+  transition: all 0.4s ease;
+}
+
+#name:hover,
+#name:focus {
+  outline: none;
+  border-color: rgb(182, 97, 32);
+}
+
+
+
+
+#date2 {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border-radius: 20px;
+  outline: none;
+  border: 1px white;
+  padding: 15px;
+  font-size: 15px;
+  color: #141414;
+  transition: all 0.4s ease;
+}
+
+#date2:hover,
+#date2:focus {
+  outline: none;
+  border-color: rgb(182, 97, 32);
+}
+
+
+
+
+.hidden {
+  display: none; /* Oculta o botão */
+}
+
+
+
+
+
+
+
+
+
+.a {
+  background: none;
+  border: none;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul em dispositivos Android */
+  outline: none; /* Remove o contorno de foco */
+}
+
+/* teste */
+
+input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #eee; /* cor padrão */
+}
+
+button:hover {
+  background-color: #ddd; /* cor ao passar o mouse */
+}
+
+
+#validarBtn {
+  border-radius: 10px;
+}
+
+.scroll-down {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+}
+
+
+
+#picture__input {
+  display: none;
+}
+
+.picture {
+  width: 301px;
+  aspect-ratio: 16/9;
+  background: rgba(0, 0, 0, 0.402);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 2px dashed currentcolor; 
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: color 300ms ease-in-out, background 300ms ease-in-out;
+  outline: none;
+  overflow: hidden;
+  margin: 50px auto; /* Centraliza horizontalmente com margens automáticas */
+}
+
+.picture:hover {
+  color: #777;
+  background: #0808089c;
+}
+
+.picture:active {
+  border-color: rgb(182, 97, 32);
+  color: rgb(182, 97, 32);
+  background: #eee;
+}
+
+.picture:focus {
+  color: #777;
+  background: #0e0e0e;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.picture__image {
+  color: #d3d2d2; /* Cor mais escura */
+  font-size: 16px; /* Tamanho da fonte */
+  display: flex; /* Usa flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  width: 100%; /* Garante que ocupa toda a largura do contêiner */
+  height: 100%; /* Garante que ocupa toda a altura do contêiner */
+  text-align: center; /* Alinha o texto horizontalmente */
+  object-fit: contain; /* Garante que a imagem se ajusta mantendo a proporção */
+  object-position: center; /* Centraliza a imagem dentro do contêiner */
+}
+
+.picture__image:hover {
+  color: rgb(131, 130, 130); /* Cor mais escura ao passar o mouse */
+}
+
+/* Efeito focus */
+.picture:focus .picture__image {
+  color: rgb(182, 97, 32); /* Cor ao focar no elemento */
+}
+
+.picture__img {
+  max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+  max-height: 100%; /* Garante que a imagem não ultrapasse a altura do contêiner */
+  object-fit: contain; /* Mantém a proporção da imagem e ajusta para caber no contêiner */
+  object-position: center; /* Centraliza a imagem dentro do contêiner */
+  display: block; /* Evita espaços extras abaixo da imagem */
+}
+
+
+/* MAIS CSS */
+
+.wrapper {
+    position: relative;               
+    text-align: center;
+   /* width: 280px;       
+    height: 380px;*/  
+     width: 300px;       
+    height: 400px;     
+    
+    background-color: rgb(224, 211, 211);
+    border: 5px solid rgb(182, 97, 32);
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+     margin: auto;
+  }
+
+      .signature-pad {
+    position: relative;
+   /* width: 250px;
+    height: 367px; */
+     width: 280px;
+    height: 387px;           
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }   
+
+  .button-container {
+display: flex;            /* Usa flexbox para alocar os botões */
+flex-direction: row;      /* Alinha os botões lado a lado */
+justify-content: center;  /* Centraliza os botões horizontalmente */
+gap: 20px;                /* Espaço entre os botões */
+width: 96%;              /* Garante que o contêiner ocupe toda a largura */
+padding: 20px;            /* Espaçamento interno para melhor visualização */
+text-align: center;
+}
+
+/* Estilos dos botões */
+.button {
+padding: 10px ;       /* Espaçamento interno para os botões */
+font-size: 18px;          /* Tamanho da fonte */
+text-align: center;
+justify-content: center;
+align-items: center;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+.button-container {
+flex-direction: row ;    /* Garante que os botões fiquem lado a lado em telas menores */
+justify-content: center; /* Garante que os botões fiquem centralizados */
+width: 96%;
+}
+}
+
+
+    
+    
+  .enviar {
+    position: relative;
+    display: block; /* Altera para block para permitir margin auto */
+    margin: 20px auto; /* Margens automáticas nas laterais */
+    width: fit-content; /* Ajusta a largura do botão ao seu conteúdo */        
+   font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;        
+    padding: 10px 30px;       
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+input::placeholder {
+        color: black; 
+        opacity: 1; 
+    }
+  
+   .typing-container {
+     display: block;
+     position: fixed;
+     margin-top: 300px;
+     margin-right: 700px; 
+     font-weight: bold;
+     color: rgb(38, 38, 38);
+           }
+    
+
+@media (max-width: 768px) { 
+
+
+.typing-container {
+position: static;
+transform: none;
+width: 100%;
+margin-top: 20px;
+}
+}
+    
