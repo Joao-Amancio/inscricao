@@ -140,11 +140,11 @@
 <body>
     <div class="container">
          <h1>Ficha de Inscrição para o Curso de Violão</h1><br>
-         <input type="text" name="Ficha de Inscrição para o Curso de Violão" hidden>
+         
         <img src="./assets/capa.png" alt="">
 
-        <form action="https://formsubmit.co/estudioenergiaesaude10@gmail.com" id="form" method="post"  enctype="multipart/form-data" target="_blank">
-            
+        <form action="https://formsubmit.co/amanciojr.144@gmail.com" id="form" method="post"  enctype="multipart/form-data" target="_blank">
+            <input type="text" name="Ficha de Inscrição para o Curso de Violão" hidden>
             <div class="input-group">            
               <label for="name">Nome Completo do Aluno:</label>
               <input type="text" id="name" name="Nome Completo do Aluno"
@@ -225,301 +225,125 @@
 
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.min.js"></script>
 
-    <script>
-      // 1. Preenchimento automático do endereço pelo CEP
-      const cepInput = document.getElementById("cep");
-      if (cepInput) {
-        cepInput.addEventListener("keyup", function () {
-          const cep = this.value.replace(/\D/g, "");
-          if (cep.length === 8) {
-            fetch(`https://viacep.com.br/ws/${cep}/json/`)
-              .then(response => response.json())
-              .then(data => {
-                if (!data.erro) {
-                  document.getElementById("rua").value = data.logradouro || "";
-                  document.getElementById("bairro").value = data.bairro || "";
-                  document.getElementById("cidade").value = data.localidade || "";
-                  document.getElementById("estado").value = data.uf || "";
-                } else {
-                  console.error("CEP não encontrado.");
-                }
-              })
-              .catch(error => console.error("Erro ao buscar o CEP:", error));
-          }
-        });
-      }
-  
-      const canvas = document.getElementById("signature-pad");
-  const enableSignBtn = document.getElementById("enable-sign");
-  const clearBtn = document.getElementById("clear");
-  const submitFormBtn = document.getElementById("submit-form");
-  const fileInput = document.getElementById("signature-file");
-  
-  const ctx = canvas.getContext("2d");
-  const signaturePad = new SignaturePad(canvas, {
-    backgroundColor: "rgba(255, 255, 255, 1)",
-    penColor: "rgb(0, 0, 0)",
-  });
-  
-  // Desativa o canvas inicialmente
-  signaturePad.off();
-  
-  let savedImageData = null;
-  
-  function addTextToCanvas() {
-    if (!savedImageData) {
-      savedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }
-  
-    ctx.putImageData(savedImageData, 0, 0);
-    ctx.fillStyle = "black";
-    ctx.font = "12px Arial";
-    ctx.textAlign = "left";
-  
-    const text = `Atesto que estou de acordo com o plano que escolhi. (Favor assinar abaixo)`;
-  
-    const words = text.split(" ");
-    let y = 30;
-    let line = "";
-  
-    words.forEach((word, index) => {
-      line += word + " ";
-      if ((index + 1) % 5 === 0 || index === words.length - 1) {
-        ctx.fillText(line, 8, y);
-        line = "";
-        y += 12;
-      }
-    });
+  <script>   
+
+    const canvas = document.getElementById("signature-pad");
+const enableSignBtn = document.getElementById("enable-sign");
+const clearBtn = document.getElementById("clear");
+const submitFormBtn = document.getElementById("submit-form");
+const fileInput = document.getElementById("signature-file");
+
+const ctx = canvas.getContext("2d");
+const signaturePad = new SignaturePad(canvas, {
+  backgroundColor: "rgba(255, 255, 255, 1)",
+  penColor: "rgb(0, 0, 0)",
+});
+
+// Desativa o canvas inicialmente
+signaturePad.off();
+
+let savedImageData = null;
+
+function addTextToCanvas() {
+  if (!savedImageData) {
+    savedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }
-  
-  enableSignBtn.addEventListener("click", function () {
-    signaturePad.on();
-    addTextToCanvas();
-    clearBtn.disabled = false;
-    enableSignBtn.disabled = true;
+
+  ctx.putImageData(savedImageData, 0, 0);
+  ctx.fillStyle = "black";
+  ctx.font = "12px Arial";
+  ctx.textAlign = "left";
+
+  const text = `Atesto que estou de acordo com o plano que escolhi. (Favor assinar abaixo)`;
+
+  const words = text.split(" ");
+  let y = 30;
+  let line = "";
+
+  words.forEach((word, index) => {
+    line += word + " ";
+    if ((index + 1) % 5 === 0 || index === words.length - 1) {
+      ctx.fillText(line, 8, y);
+      line = "";
+      y += 12;
+    }
   });
+}
+
+enableSignBtn.addEventListener("click", function () {
+  signaturePad.on();
+  addTextToCanvas();
+  clearBtn.disabled = false;
+  enableSignBtn.disabled = true;
+});
+
+// Função de limpar assinatura
+clearBtn.addEventListener("click", function () {
+  signaturePad.clear();
+  savedImageData = null;
+  addTextToCanvas();
+});
+
+// Converte a assinatura em imagem automaticamente após a assinatura
+signaturePad.onEnd = function () {
+  if (signaturePad.isEmpty()) return;
+
+  canvas.toBlob(function (blob) {
+    if (!blob) return;
+
+    const file = new File([blob], "assinatura.png", { type: "image/png" });
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    fileInput.files = dataTransfer.files;
+    submitFormBtn.disabled = false;
+  }, "image/png");
+};
+
+
+  </script>
+
   
-  // Função de limpar assinatura
-  clearBtn.addEventListener("click", function () {
-    signaturePad.clear();
-    savedImageData = null;
-    addTextToCanvas();
-  });
-  
-  // Converte a assinatura em imagem automaticamente após a assinatura
-  signaturePad.onEnd = function () {
-    if (signaturePad.isEmpty()) return;
-  
-    canvas.toBlob(function (blob) {
-      if (!blob) return;
-  
-      const file = new File([blob], "assinatura.png", { type: "image/png" });
-      const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(file);
-      fileInput.files = dataTransfer.files;
-      submitFormBtn.disabled = false;
-    }, "image/png");
-  };
-  
-  
-      // 3. Texto animado
-      const typingContainer = document.getElementById("typing-container");
-      const typingText = document.getElementById("typing-text");
-      if (typingContainer && typingText) {
-        const textToType = "Nada é impossível quando você se dedica. A persistência é a chave do sucesso. Cada gota de suor é um passo em direção à sua meta. A força está dentro de você, apenas a liberte. Vença a batalha consigo mesmo a cada treino. Não espere pela oportunidade, crie-a. O corpo alcança o que a mente acredita. Treine com paixão, alcance com determinação. Seja o herói da sua própria jornada.";
-        const sentences = textToType.split('. ').map(sentence => sentence.trim() + '.');
-        let index = 0;
-        const speed = 100;
-  
-        function typeText() {
-          if (index < sentences.length) {
-            const sentence = sentences[index];
-            let charIndex = 0;
-  
-            function typeChar() {
-              if (charIndex < sentence.length) {
-                typingText.innerHTML += sentence.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, speed);
-              } else {
-                typingText.innerHTML += '<br>';
-                index++;
-                setTimeout(typeText, speed * 2);
-              }
-            }
-  
-            typeChar();
-          }
-        }
-  
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              typeText();
-              observer.disconnect();
-            }
-          });
-        }, { threshold: 1.0 });
-  
-        observer.observe(typingContainer);
-      }
-  
-      // 4. Botão "Voltar ao topo"
-      const backToTopButton = document.getElementById("back-to-top");
-      if (backToTopButton) {
-        window.addEventListener("scroll", function () {
-          backToTopButton.style.display = window.pageYOffset > 300 ? "block" : "none";
-        });
-  
-        backToTopButton.addEventListener("click", function (event) {
-          event.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      }
-    </script>
-  
-    <script>
-      var instagramButton = document.getElementById('instagramButton');
-      var bodyHeight = document.body.scrollHeight;
-      var hidePercentage = 100; // Porcentagem do corpo onde o botão do Instagram deve desaparecer
-  
-      window.addEventListener('scroll', function() {
-        var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-        var scrollPercentage = (scrollPosition / bodyHeight) * 100;
-  
-        if (scrollPosition === 0 || scrollPercentage >= hidePercentage) {
-          instagramButton.classList.add('hidden');
-        } else {
-          instagramButton.classList.remove('hidden');
-        }
-      });
-    </script>  
-      
-  <script
-        type="module"
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-      ></script>
-      <script
-        nomodule
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-      ></script>
-     <script>
-      document.getElementById('cpf').addEventListener('input', function (e) {
-        let cpf = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-  
-        // Limita o CPF a 11 dígitos
-        if (cpf.length > 11) {
-          cpf = cpf.slice(0, 11);
-        }
-  
-        // Formata o CPF enquanto o usuário digita
-        if (cpf.length <= 3) {
-          e.target.value = cpf;
-        } else if (cpf.length <= 6) {
-          e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3)}`;
-        } else if (cpf.length <= 9) {
-          e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6)}`;
-        } else {
-          e.target.value = `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}`;
-        }
-  
-        validarCPF(cpf);
-      });
-  
-      function validarCPF(cpf) {
-        const cpfMessage = document.getElementById('cpfMessage');
-        const submitBtn = document.getElementById('submit-form');
-  
-        // Remove caracteres não numéricos para validação
-        cpf = cpf.replace(/\D/g, '');
-  
-        // CPF inválido específico
-        if (cpf === '12345678909') {
-          cpfMessage.innerText = 'CPF inválido.';
-          cpfMessage.style.color = 'red';
-          submitBtn.disabled = true;
-          return;
-        }
-  
-        // Verifica se o CPF tem 11 dígitos
-        if (cpf.length !== 11) {
-          cpfMessage.innerText = 'CPF deve ter 11 dígitos.';
-          cpfMessage.style.color = 'red';
-          submitBtn.disabled = true;
-          return;
-        }
-  
-        // Verifica se todos os dígitos são iguais
-        if (/^(\d)\1{10}$/.test(cpf)) {
-          cpfMessage.innerText = 'CPF inválido.';
-          cpfMessage.style.color = 'red';
-          submitBtn.disabled = true;
-          return;
-        }
-  
-        // Cálculo dos dígitos verificadores
-        let soma = 0;
-        for (let i = 0; i < 9; i++) {
-          soma += parseInt(cpf.charAt(i)) * (10 - i);
-        }
-        let resto = soma % 11;
-        let digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
-  
-        soma = 0;
-        for (let i = 0; i < 10; i++) {
-          soma += parseInt(cpf.charAt(i)) * (11 - i);
-        }
-        resto = soma % 11;
-        let digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
-  
-        if (parseInt(cpf.charAt(9)) === digitoVerificador1 && parseInt(cpf.charAt(10)) === digitoVerificador2) {
-          cpfMessage.innerText = 'CPF válido.';
-          cpfMessage.style.color = 'green';
-  
-          // Copia o CPF validado para o campo oculto
-          document.getElementById('cpfHidden').value = cpf;
-  
-          // Habilita o botão de envio
-          submitBtn.disabled = false;
-        } else {
-          cpfMessage.innerText = 'CPF inválido.';
-          cpfMessage.style.color = 'red';
-          submitBtn.disabled = true;
-        }
-      }
-    </script>
-  
-    <script>
-      const inputFile = document.querySelector("#picture__input");
-  const pictureImage = document.querySelector(".picture__image");
-  const pictureImageTxt = "Click aqui e Tire uma foto ou Anexe";
-  pictureImage.innerHTML = pictureImageTxt;
-  
-  inputFile.addEventListener("change", function (e) {
-    const inputTarget = e.target;
-    const file = inputTarget.files[0];
-  
-    if (file) {
-      const reader = new FileReader();
-  
-      reader.addEventListener("load", function (e) {
-        const readerTarget = e.target;
-  
-        const img = document.createElement("img");
-        img.src = readerTarget.result;
-        img.classList.add("picture__img");
-  
-        pictureImage.innerHTML = "";
-        pictureImage.appendChild(img);
-      });
-  
-      reader.readAsDataURL(file);
-    } else {
-      pictureImage.innerHTML = pictureImageTxt;
-        }
-  });
-    </script>
+    
+<script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   
 
+  <script>
+    const inputFile = document.querySelector("#picture__input");
+const pictureImage = document.querySelector(".picture__image");
+const pictureImageTxt = "Click aqui e Tire uma foto ou Anexe";
+pictureImage.innerHTML = pictureImageTxt;
+
+inputFile.addEventListener("change", function (e) {
+  const inputTarget = e.target;
+  const file = inputTarget.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function (e) {
+      const readerTarget = e.target;
+
+      const img = document.createElement("img");
+      img.src = readerTarget.result;
+      img.classList.add("picture__img");
+
+      pictureImage.innerHTML = "";
+      pictureImage.appendChild(img);
+    });
+
+    reader.readAsDataURL(file);
+  } else {
+    pictureImage.innerHTML = pictureImageTxt;
+      }
+});
+  </script>
+    
 </body>
 </html>
