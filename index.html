@@ -373,6 +373,36 @@ inputFile.addEventListener("change", function (e) {
       }
 });
   </script>
+
+
+
+<script> 
+
+  // Função para gerar a miniatura da imagem
+  const pictureInput = document.getElementById('picture__input');
+  const imagePreview = document.getElementById('image-preview');
+
+  pictureInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+              const img = new Image();
+              img.src = e.target.result;
+              img.onload = function() {
+                  // Exibe a imagem como miniatura
+                  const miniatura = document.createElement('img');
+                  miniatura.src = img.src;
+                  miniatura.style.maxWidth = '100px'; // Limita o tamanho da miniatura
+                  miniatura.style.maxHeight = '100px';
+                  imagePreview.innerHTML = ''; // Limpa a visualização anterior
+                  imagePreview.appendChild(miniatura);
+              }
+          };
+          reader.readAsDataURL(file);
+      }
+    });
+</script>
     
 </body>
 </html>
